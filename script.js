@@ -5,11 +5,11 @@
  */
 
 function createPlayer(name) {
+    // set score function
+    
+    
     return { name };
 }
-
-const test = createPlayer("test");
-console.log(test);
 
 /**
  * 
@@ -28,10 +28,43 @@ function gameController() {
  * 
  */
 
-const gameboard = (function(){
-    // code goes here
+const gameBoard = (function(){
+    let board = [
+        ["","",""],
+        ["","",""],
+        ["","",""]
+    ];
+
+    function setBoardCell(row, column, value) {
+        board[row][column] = value;
+    }
+    
+    function getBoard() {
+        console.log(board);
+        // return board;
+    }
+
+    function clearBoard() {
+        board = [
+            ["","",""],
+            ["","",""],
+            ["","",""]
+        ];
+    }
 
 
     // return functions
-    return {};
+    return {setBoardCell, getBoard, clearBoard};
 })();
+
+/**
+ * 
+ * test logic (temp)
+ * 
+ */
+
+gameBoard.setBoardCell(2,2, "X");
+gameBoard.getBoard();
+gameBoard.setBoardCell(1,1,"O");
+gameBoard.clearBoard();
+
