@@ -45,11 +45,11 @@ const gameBoard = (function(){
     }
 
     function clearBoard() {
-        board = [
-            ["","",""],
-            ["","",""],
-            ["","",""]
-        ];
+        for (let i=0; i<3; i++) {
+            for(let j=0; j<3; j++) {
+                board[i][j] = "";
+            }
+        }
     }
 
 
@@ -67,4 +67,5 @@ gameBoard.setBoardCell(2,2, "X");
 gameBoard.getBoard();
 gameBoard.setBoardCell(1,1,"O");
 gameBoard.clearBoard();
+gameBoard.getBoard();
 
