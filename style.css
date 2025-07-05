@@ -7,3 +7,36 @@ body {
     background-color: #f0f0f0;
     font-family: Arial, sans-serif;
 }
+
+.game-container {
+    display: flex;
+    justify-content: center;
+    padding: 42px;
+}
+
+.game-board {
+    display: grid;
+    width: 90vw;
+    max-width: 600px;
+    aspect-ratio: 1 / 1;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    /* border: solid 1px black; */
+}
+
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    border-right: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+}
+
+.cell:nth-child(3n) {
+    border-right: none;
+}
+
+.cell:nth-last-child(-n+3) {
+    border-bottom: none;
+}
