@@ -16,7 +16,7 @@ function createPlayer(name) {
  */
 
 const gameController = (function() {
-    
+
     function checkWinner() {
         const board = gameBoard.getBoard();
 
@@ -62,7 +62,12 @@ const gameController = (function() {
         }
         return console.log("it's a tie!");
     }
-    return {checkWinner};
+
+    function getPlayerTurn() {
+        return "x";
+    }
+
+    return {checkWinner, getPlayerTurn};
 })();
 
 /**
@@ -80,6 +85,7 @@ const gameBoard = (function(){
 
     function setBoardCell(row, column, value) {
         board[row][column] = value;
+
     }
     
     function getBoard() {
@@ -109,8 +115,25 @@ const gameBoard = (function(){
 const player1 = createPlayer("hi");
 const player2 = createPlayer("oeps two");
 
-gameBoard.setBoardCell(0,0,"x");
-gameBoard.setBoardCell(0,1,"x");
-gameBoard.setBoardCell(0,2,"x");
-gameController.checkWinner();
+// gameBoard.setBoardCell(0,0,"x");
+// gameBoard.setBoardCell(0,1,"x");
+// gameBoard.setBoardCell(0,2,"x");
+// gameController.checkWinner();
+
+/**
+ * 
+ * DOM functions
+ * 
+ */
+
+const cells = document.querySelectorAll(".cell");
+cells.forEach((cell) => {
+    cell.addEventListener("click", () => {
+        const row = cell.getAttribute("data-row");
+        const col = cell.getAttribute("data-col");
+        const player = gameController.getPlayerTurn();
+        gameBoard.setBoardCell(row,col,player);
+        cell.textContent = player;
+    })
+})
 
