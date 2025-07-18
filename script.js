@@ -16,6 +16,7 @@ function createPlayer(name) {
  */
 
 const gameController = (function() {
+    let currentPlayer = "x";
 
     function checkWinner() {
         const board = gameBoard.getBoard();
@@ -55,7 +56,7 @@ const gameController = (function() {
         // check if it's a tie
         for (let i=0; i<3; i++) {
             for(let j=0; j<3; j++) {
-                if (board[i][j] = "") {
+                if (board[i][j] === "") {
                     console.log("next round");
                 }
             }
@@ -64,10 +65,18 @@ const gameController = (function() {
     }
 
     function getPlayerTurn() {
-        return "x";
+        return currentPlayer;
     }
 
-    return {checkWinner, getPlayerTurn};
+    function switchPlayer() {
+        if(currentPlayer === "x") {
+            currentPlayer = "o";
+        } else {
+            currentPlayer = "x";
+        }
+    }
+
+    return {checkWinner, getPlayerTurn, switchPlayer};
 })();
 
 /**
@@ -95,8 +104,7 @@ const gameBoard = (function(){
     function clearBoard() {
         for (let i=0; i<3; i++) {
             for(let j=0; j<3; j++) {
-                board[i][j] === "";
-                return console.log("not a tie!");
+                board[i][j] = "";
             }
         }
     }
@@ -115,11 +123,6 @@ const gameBoard = (function(){
 const player1 = createPlayer("hi");
 const player2 = createPlayer("oeps two");
 
-// gameBoard.setBoardCell(0,0,"x");
-// gameBoard.setBoardCell(0,1,"x");
-// gameBoard.setBoardCell(0,2,"x");
-// gameController.checkWinner();
-
 /**
  * 
  * DOM functions
@@ -134,6 +137,7 @@ cells.forEach((cell) => {
         const player = gameController.getPlayerTurn();
         gameBoard.setBoardCell(row,col,player);
         cell.textContent = player;
+        gameController.switchPlayer();
     })
 })
 
