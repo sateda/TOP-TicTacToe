@@ -94,7 +94,10 @@ const gameBoard = (function(){
 
     function setBoardCell(row, column, value) {
         board[row][column] = value;
+    }
 
+    function getBoardCell(row, column) {
+        return board[row][column];
     }
     
     function getBoard() {
@@ -111,7 +114,7 @@ const gameBoard = (function(){
 
 
     // return functions
-    return {setBoardCell, getBoard, clearBoard};
+    return {setBoardCell, getBoard, clearBoard, getBoardCell};
 })();
 
 /**
@@ -135,9 +138,14 @@ cells.forEach((cell) => {
         const row = cell.getAttribute("data-row");
         const col = cell.getAttribute("data-col");
         const player = gameController.getPlayerTurn();
-        gameBoard.setBoardCell(row,col,player);
-        cell.textContent = player;
-        gameController.switchPlayer();
+        if(gameBoard.getBoardCell(row,col) !== "") {
+            alert("Cell is taken!");
+        } else {
+            gameBoard.setBoardCell(row,col,player);
+            cell.textContent = player;
+            gameController.checkWinner();
+            gameController.switchPlayer();
+        }
     })
 })
 
