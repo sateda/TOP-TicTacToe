@@ -36,6 +36,10 @@ body {
     background-color: #ebebeb;
 }
 
+.win {
+    background-color: #90ee90;
+}
+
 .cell:nth-child(3n) {
     border-right: none;
 }
